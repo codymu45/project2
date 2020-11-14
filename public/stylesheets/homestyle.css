@@ -1,0 +1,119 @@
+body{
+  background-color: rgb(94, 150, 255);
+}
+
+#MECC{
+  font-family: 'Rubik', sans-serif;
+  font-size: 100px;
+  text-align: center;
+  color: white;
+}
+
+hr{
+  border: 3px solid rgb(0, 0, 0);
+  border-radius: 3px;
+}
+
+.buttonGrid{
+  margin-top: 30px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  justify-content: center;
+}
+
+.viewEmployees {
+  position: relative;
+  text-align: center;
+  width: 400px;
+  height: 200px;
+  background-color: white;
+  color: white;
+  margin-left: 10%;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+}
+
+.viewEmployeesText {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: black;
+  font-size: 50px; 
+  font-family: 'Assistant', sans-serif;
+  font-weight: bold; 
+}
+
+.viewAttendance {
+  position: relative;
+  text-align: center;
+  width: 400px;
+  height: 200px;
+  color: white;
+  background-color: white;
+  margin-right: 10%;
+  margin-left: 20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+}
+
+.attendanceText {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: black;
+  font-size: 50px;
+  font-family: 'Assistant', sans-serif;
+  font-weight: bold; 
+}
+
+.viewTasks {
+  position: relative;
+  text-align: center;
+  width: 400px;
+  height: 200px;
+  color: white;
+  background-color: white;
+  margin-left: 10%;
+  margin-right: 20px;
+  margin-top: 20px;
+  border-radius: 10px;
+}
+
+.tasksText {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: black;
+  font-size: 50px; 
+  font-family: 'Assistant', sans-serif;
+  font-weight: bold; 
+}
+
+.addEmployee {
+  position: relative;
+  text-align: center;
+  width: 400px;
+  height: 200px;
+  color: white;
+  background-color: white;
+  margin-right: 10%;
+  margin-left: 20px;
+  margin-top: 20px;
+  border-radius: 10px;
+}
+
+.addEmployeeText {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: black;
+  font-size: 50px; 
+  font-family: 'Assistant', sans-serif;
+  font-weight: bold; 
+}
