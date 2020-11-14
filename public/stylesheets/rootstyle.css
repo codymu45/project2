@@ -1,0 +1,253 @@
+body{
+  height: 100vh;
+  width: 100vw;
+  background-color: rgb(139, 209, 255);
+  font-family: 'Assistant', sans-serif;
+  /* overflow: hidden; */
+}
+
+.fieldBox{
+  align-self: center;
+  align-content: center;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+#welcome{
+  font-family: 'Assistant', sans-serif;
+  margin-top: 10%;
+  margin-bottom: 3%;
+}
+
+#signIn{ 
+  font-family: 'Assistant', sans-serif;
+  font-weight: bold;
+  cursor: pointer;
+  width: 80px;
+  align-self: center;
+  margin-bottom: 3%;
+  font-size: larger;
+  border: 2px solid black;
+  border-radius: 3px;
+  transition: 0.5s;
+}
+
+#signUp{
+  font-family: 'Assistant', sans-serif;
+  font-weight: bold;
+  width: 80px;
+  align-self: center;
+  margin-bottom: 3%;
+  cursor: pointer;
+  font-size: larger;
+  border: 2px solid black;
+  border-radius: 3px;
+  transition: 0.5s;
+}
+button:hover{
+  background-color: rgb(38, 150, 255);
+}
+
+hr{
+  width: 400px;
+  border: 1px solid black;
+  border-radius: 3px;
+}
+
+form{
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}
+
+input{
+  width: 250px;
+  align-self: center;
+  font-family: 'Assistant', sans-serif;
+  font-weight: bold;
+  border: 2px solid black;
+  border-radius: 3px;
+  margin-bottom: 3%;
+  height: 30px;
+  font-size: 1.3rem;
+}
+
+.accountLinks{
+  align-self: center;
+  width: 400px;
+  font-family: 'Assistant', sans-serif;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+}
+
+a{
+  color: black;
+  text-decoration: none;
+}
+
+.clock{
+  display: flex;
+  flex-direction: row;
+  margin: auto;
+  width: 50%;
+  text-align: center;
+  justify-content: space-between;
+  height: fit-content;
+}
+
+#timer{
+  font-family: 'Assistant', sans-serif;
+  font-weight: bold;
+  font-size: 40px;
+  border-radius: 10px;
+  background-color: rgb(226, 226, 226);
+  width: 200px;
+}
+
+#clockIn{
+  font-family: 'Assistant', sans-serif;
+  font-weight: bold;
+  width: 200px;
+  height: 100px;
+  align-self: center;
+  margin-bottom: 3%;
+  cursor: pointer;
+  font-size: 30px;
+  border: 2px solid black;
+  border-radius: 8px;
+  background-color: rgb(226, 226, 226);
+  transition: 0.3s;
+  box-shadow: 0 9px rgb(93, 93, 93);
+  text-decoration: none;
+  outline: none;
+}
+
+#clockIn:hover{
+  background: rgb(0, 156, 26)!important;
+    color: rgb(255, 255, 255)!important;
+}
+
+#clockIn:active{
+  box-shadow: 0 5px rgb(56, 56, 56);
+  transform: translateY(5px);
+}
+
+.dashboardBreak{
+  width: 85%;
+}
+
+.taskBox{
+  width: 100%;
+  align-self: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+header{
+  font-weight: bold;
+  font-size: 30px;
+  background-color: rgb(0, 117, 251);
+  padding: 10px;
+  margin-top: -10px;
+  margin-left: -10px;
+  margin-bottom: -10px;
+}
+
+#headerLine{
+  width: 100vw;
+  margin-left: -20px;
+}
+
+.todoTasks{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin-top: none;
+  justify-content: center;
+  width: 30%;
+  height: 100vh;
+  padding: 30px;
+  border-right: 2px solid black;
+}
+
+.inProgress{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin-top: none;
+  justify-content: center;
+  width: 30%;
+  height: 100vh;
+  padding: 30px;
+}
+
+.completed{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin-top: none;
+  justify-content: center;
+  width: 30%;
+  margin-right: 20px;
+  height: 100vh;
+  padding: 30px;
+  border-left: 2px solid black;
+}
+
+#todoHeader{
+  justify-content: center;
+  text-align: center;
+  align-content: center;
+  background-color: rgb(255, 58, 58);
+  width: 100%;
+  height: 40px;
+  font-weight: bold;
+  font-size: 30px;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+#progressHeader{
+  text-align: center;
+  background-color: rgb(220, 190, 20);
+  width: 100%;
+  height: 40px;
+  font-weight: bold;
+  font-size: 30px;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+#completedHeader{
+  text-align: center;
+  background-color: rgb(15, 180, 0);
+  width: 100%;
+  height: 40px;
+  font-weight: bold;
+  font-size: 30px;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.taskList{
+  background-color: cornsilk;
+  height: 100vh;
+  width: 80%;
+  margin: auto;
+  justify-content: center;
+  align-content: center;
+  display: block;
+  text-align: center;
+  padding-right: 40px;
+}
+
+li{
+  border: 1px solid black;
+  border-radius: 3px;
+  padding: 5px;
+  margin: 10px;
+  font-weight: bold;
+}
