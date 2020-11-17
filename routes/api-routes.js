@@ -12,21 +12,33 @@ module.exports = function(app) {
       email: req.user.email,
       id: req.user.id
     });
+    // res.sendFile(path.join(__dirname, "../public/dashboard.html"));
   });
 
   // Route for signing up a user. The user's password is automatically hashed and stored securely thanks to
   // how we configured our Sequelize User Model. If the user is created successfully, proceed to log the user in,
   // otherwise send back an error
   app.post("/api/signup", (req, res) => {
+    console.log(req.body);
+
     db.User.create({
+      fullName: req.body.fullName,
       email: req.body.email,
       password: req.body.password
     })
-      .then(() => {
-        res.redirect(307, "/api/login");
+      .then(r => {
+        console.log(r);
+        res.status(201);
       })
       .catch(err => {
-        res.status(401).json(err);
+        if (err.original.code === "ER_DUP_ENTRY") {
+          return res.status(200).json({
+            error: true,
+            // eslint-disable-next-line camelcase
+            error_message: "User already exists"
+          });
+        }
+        return res.status(401).json(err);
       });
   });
 
@@ -45,9 +57,42 @@ module.exports = function(app) {
       // Otherwise send back the user's email and id
       // Sending back a password, even a hashed password, isn't a good idea
       res.json({
+        fullName: req.user.fullName,
         email: req.user.email,
         id: req.user.id
       });
     }
+  });
+
+  app.post("/api/addTime", (req, res) => {
+    console.log(req.body);
+
+    db.Worktime.create({
+      hours: req.body.hours,
+      mins: req.body.mins,
+      secs: req.body.secs
+    })
+      .then(r => {
+        console.log(r);
+        res.status(201);
+      })
+      .catch(err => {
+        return res.status(401).json(err);
+      });
+  });
+
+  app.post("/api/addTask", (req, res) => {
+    console.log(req.body);
+
+    db.Tasks.create({
+      name: req.body.name
+    })
+      .then(r => {
+        console.log(r);
+        res.status(201);
+      })
+      .catch(err => {
+        return res.status(401).json(err);
+      });
   });
 };

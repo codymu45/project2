@@ -1,51 +1,67 @@
- <nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="/logout">
-        Logout
-      </a>
-    </div>
-  </div>
-</nav>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-6 col-md-offset-3">
-        <h2>Welcome <span class="member-name"></span></h2>
-      </div>
-    </div>
-  </div>
 <header>Work In Progress</header>
-    <hr id="headerLine">
-    <div class="clock">
-      <button id="clockIn">CLOCK IN</button>
-      <p id="timer">01:56:35</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <h2>Welcome, <span class="member-name"></span></h2>
     </div>
-    <hr class="dashboardBreak">
-		<div class="taskBox">
-      <div class="todoTasks">
-        <p id="todoHeader">Not Started</p>
-        <ul class="taskList">
-          <li>Go Shopping</li>
-          <li>Pay Bills</li>
-          <li>Mow Lawn</li>
-        </ul>  
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a id="statsLink" href="/stats">My Stats</a>
+          <a class="navbar-brand" href="/logout">Logout</a>
+        </div>
       </div>
-      <div class="inProgress">
-        <p id="progressHeader">In Progress</p>
-        <ul class="taskList">
-          <li>Go Shopping</li>
-          <li>Pay Bills</li>
-          <li>Mow Lawn</li>
-        </ul> 
-      </div>
-      <div class="completed">
-        <p id="completedHeader">Completed</p>
-        <ul class="taskList">
-          <li>Go Shopping</li>
-          <li>Pay Bills</li>
-          <li>Mow Lawn</li>
-        </ul> 
-      </div>
-    </div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script type="text/javascript" src="js/members.js"></script>
+    </nav>
+  </div>
+</div>
+<hr id="headerLine">
+<div class="clock">
+  <button id="clockIn">CLOCK IN</button>
+  <div class="countup" id="countup1">
+    <span class="timeel hours">00</span>
+    <span class="timeel timeRefHours">hours</span>
+    <span class="timeel minutes">00</span>
+    <span class="timeel timeRefMinutes">minutes</span>
+    <span class="timeel seconds">00</span>
+    <span class="timeel timeRefSeconds">seconds</span>
+  </div>
+</div>
+<h1>Task Saver</h1>
+
+<h3>Save the tasks you need to get to later</h3>
+
+<ul>
+  {{#each tasks}}
+  	<li>
+  	   <p>ID: {{this.id}}</p>
+       <p>Task: {{this.task}}</p>
+  	</li>
+  {{/each}}
+</ul>
+
+<form action="/" method="POST">
+	<textarea id="taskInput" type="text" name="task"></textarea>
+
+	<button id="addTask" type="submit">Submit</button>
+</form>
+
+<hr class="dashboardBreak">
+<div class="taskBox">
+  <div class="todoTasks">
+    <p id="todoHeader">Not Started</p>
+    <ul class="taskList">
+    </ul>
+  </div>
+  <div class="inProgress">
+    <p id="progressHeader">In Progress</p>
+    <ul class="taskList">
+    </ul>
+  </div>
+  <div class="completed">
+    <p id="completedHeader">Completed</p>
+    <ul class="taskList">
+    </ul>
+  </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript" src="js/user.js"></script>
