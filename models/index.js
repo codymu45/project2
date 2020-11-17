@@ -30,7 +30,17 @@ Object.keys(db).forEach(function(modelName) {
   }
 });
 
+
+
+
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
+
+
+
+db.Tasks.belongsTo(db.User);
+db.Worktime.belongsTo(db.User)
+
+
 
 module.exports = db;

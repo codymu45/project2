@@ -30,15 +30,6 @@
 
 <h3>Save the tasks you need to get to later</h3>
 
-<ul>
-  {{#each tasks}}
-  	<li>
-  	   <p>ID: {{this.id}}</p>
-       <p>Task: {{this.task}}</p>
-  	</li>
-  {{/each}}
-</ul>
-
 <form action="/" method="POST">
 	<textarea id="taskInput" type="text" name="task"></textarea>
 
@@ -50,6 +41,8 @@
   <div class="todoTasks">
     <p id="todoHeader">Not Started</p>
     <ul class="taskList">
+      {{#each tasks}}
+      {{/each}}
     </ul>
   </div>
   <div class="inProgress">

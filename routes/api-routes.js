@@ -1,6 +1,12 @@
 // Requiring our models and passport as we've configured it
 const db = require("../models");
 const passport = require("../config/passport");
+const Sequelize = require("sequelize");
+const { Op } = require("sequelize");
+
+const moment = require("moment");
+
+const isAuthenticated = require("../config/middleware/isAuthenticated");
 
 module.exports = function(app) {
   // Using the passport.authenticate middleware with our local strategy.
@@ -49,7 +55,7 @@ module.exports = function(app) {
   });
 
   // Route for getting some data about our user to be used client side
-  app.get("/api/user_data", (req, res) => {
+  app.get("/api/user_data", isAuthenticated, (req, res) => {
     if (!req.user) {
       // The user is not logged in, send back an empty object
       res.json({});
@@ -64,13 +70,14 @@ module.exports = function(app) {
     }
   });
 
-  app.post("/api/addTime", (req, res) => {
+  app.post("/api/addTime", isAuthenticated, (req, res) => {
     console.log(req.body);
 
     db.Worktime.create({
       hours: req.body.hours,
       mins: req.body.mins,
-      secs: req.body.secs
+      secs: req.body.secs,
+      UserId: req.user.id
     })
       .then(r => {
         console.log(r);
@@ -81,11 +88,12 @@ module.exports = function(app) {
       });
   });
 
-  app.post("/api/addTask", (req, res) => {
+  app.post("/api/addTask", isAuthenticated, (req, res) => {
     console.log(req.body);
 
     db.Tasks.create({
-      name: req.body.name
+      name: req.body.name,
+      UserId: req.user.id
     })
       .then(r => {
         console.log(r);
@@ -94,5 +102,74 @@ module.exports = function(app) {
       .catch(err => {
         return res.status(401).json(err);
       });
+  });
+
+  app.get("/records/hours", isAuthenticated, (req, res) => {
+    db.Worktime.findAll({
+      where: {
+        UserId: req.user.id,
+        createdAt: {
+          [Op.gte]: moment()
+            .subtract(7, "days")
+            .toDate()
+        }
+      }
+    }).then(results => {
+      if (results.length === 0) {
+        return res.json({
+          success: true,
+          data: 0
+        });
+      }
+      for (let i = 0; i < results; i++) {
+        // add up the times
+        console.log(results[i].dataValues);
+      }
+
+      // eslint-disable-next-line camelcase
+      if (running_total > req.user.recordTime) {
+        // update the user record time,
+        // respond with current time and record time
+      } else {
+        res.json({
+          success: true,
+          data: null, // current time
+          record: req.user.recordTime
+        });
+      }
+    });
+  });
+
+  app.get("/records/tasks", isAuthenticated, (req, res) => {
+    db.Worktime.findAll({
+      where: {
+        UserId: req.user.id,
+        createdAt: {
+          [Op.gte]: moment()
+            .subtract(7, "days")
+            .toDate()
+        },
+        status: "Completed"
+      }
+    }).then(results => {
+      // eslint-disable-next-line eqeqeq
+      if (results.length == 0) {
+        return res.json({
+          success: true,
+          data: 0
+        });
+      }
+
+      if (results.length > req.user.recordTasks) {
+        // update the user record time,
+        // respond with current time and record time
+      } else {
+        res.json({
+          success: true,
+          data: null, // current time
+          record: req.user.recordTasks
+        });
+      }
+    });
   });
 };

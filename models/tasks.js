@@ -4,6 +4,13 @@ module.exports = function(sequelize, DataTypes) {
     name: {
       type: DataTypes.STRING(150),
       allowNull: false
+    },
+    status: {
+      type: DataTypes.STRING(30),
+      allowNull: false,
+      defaultValue: function() {
+        return "Queue";
+      }
     }
   });
   return Tasks;
