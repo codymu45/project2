@@ -91,7 +91,11 @@ a{
   display: flex;
   flex-direction: row;
   margin: auto;
+<<<<<<< HEAD
   width: 70%;
+=======
+  width: 50%;
+>>>>>>> 44ab60fdfe3d93d787d40e8148003ae53cad2836
   text-align: center;
   justify-content: space-between;
   height: fit-content;
@@ -242,7 +246,10 @@ header{
   display: block;
   text-align: center;
   padding-right: 40px;
+<<<<<<< HEAD
   border-radius: 3px;
+=======
+>>>>>>> 44ab60fdfe3d93d787d40e8148003ae53cad2836
 }
 
 li{
@@ -252,6 +259,7 @@ li{
   margin: 10px;
   font-weight: bold;
 }
+<<<<<<< HEAD
 
 #statsLabel{
   font-size: 40px;
@@ -340,3 +348,5 @@ li{
   display: flex;
   flex-direction: row;
 }
+=======
+>>>>>>> 44ab60fdfe3d93d787d40e8148003ae53cad2836
