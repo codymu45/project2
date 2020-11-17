@@ -47,9 +47,4 @@ $(document).ready(() => {
         console.log("error is", err);
       });
   }
-
-  function handleLoginErr(err) {
-    $("#alert .msg").text(err.responseJSON);
-    $("#alert").fadeIn(500);
-  }
 });

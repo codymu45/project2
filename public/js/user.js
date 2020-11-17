@@ -79,7 +79,6 @@ $(document).ready(() => {
   }
 
   const addTaskBtn = $("button#addTask");
- 
 
   addTaskBtn.on("click", event => {
     const taskName = $("#taskInput").val();
