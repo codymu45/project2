@@ -96,6 +96,7 @@ $(document).ready(() => {
       data: newTask
     })
       .done(res => {
+        alert("test");
         console.log("new task: ", res);
         if (res.error) {
           alert(res.error_message);
@@ -104,5 +105,104 @@ $(document).ready(() => {
       .fail(err => {
         console.log("error is", err);
       });
+  }
+
+  function updatePost() {
+    var newStatus = {
+      status: "WORK"
+    };
+    $.ajax({
+      method: "PUT",
+      url: "/api/tasks",
+      data: newStatus
+    })
+    .done(res => {
+      alert("test2");
+    })
+    .fail(err => {
+      alert("test error");
+    })
+  }
+
+  function getTask() {
+
+    $.ajax({
+      url: "/api/tasks",
+      method: "GET",
+    })
+      .done(res => {
+        alert("test2");
+        res.filter(function(filterTask){
+          return filterTask.status === "Queue"
+        }).map(function(task){
+          $(".todoTasks .taskList").append("<li id = " + task.id + ">" + task.name + "</li>");
+          // $(".todoTasks .taskList li").attr("id","item"+ task.id)
+          $(".todoTasks .taskList li").attr("draggable","true")
+          $(".todoTasks .taskList li").on("dragstart", function(e){
+            drag(e)
+          })
+        })  
+        res.filter(function(filterTask){
+          return filterTask.status === "in progress"
+        }).map(function(task){
+          $(".inProgress .taskList").append("<li id = " + task.id + ">" + task.name + "</li>");
+          // $(".inProgress .taskList").append("<li>" + task.name + "</li>");
+          $(".inProgress .taskList li").attr("id","progress"+ task.id)
+          $(".inProgress .taskList li").attr("draggable","true")
+          $(".inProgress .taskList li").on("dragstart", function(e){
+            drag(e)
+          })
+        })  
+        res.filter(function(filterTask){
+          return filterTask.status === "completed"
+        }).map(function(task){
+          $(".completed .taskList").append("<li id = " + task.id + ">" + task.name + "</li>");
+          // $(".completed .taskList").append("<li>" + task.name + "</li>");
+          $(".completed .taskList li").attr("id","complete"+ task.id)
+          $(".completed .taskList li").attr("draggable","true")
+          $(".completed .taskList li").on("dragstart", function(e){
+            drag(e)
+          })
+        }) 
+
+      })
+  }
+  getTask();
+
+  $(".todoTasks").on("drop",function(e){
+    // e.preventDefault();  
+    // e.stopPropagation();
+    drop(e)
+  })
+  $(".inProgress").on("drop",function(e){
+    // e.preventDefault();  
+    // e.stopPropagation();
+    updatePost();
+    drop(e)
+  })
+  $(".todoTasks").on("dragover",function(e){
+    // e.preventDefault();  
+    // e.stopPropagation();
+    allowDrop(e)
+  })
+  $(".inProgress").on("dragover",function(e){
+    // e.preventDefault();  
+    // e.stopPropagation();
+    allowDrop(e)
+  })
+  function allowDrop(ev) {
+    ev.preventDefault();
+  }
+  
+  function drag(ev) {
+    // ev.dataTransfer= ev.originalEvent.dataTransfer;
+    ev.originalEvent.dataTransfer.setData("text", ev.target.id);
+  }
+  
+  function drop(ev) {
+    ev.preventDefault();
+    // ev.dataTransfer= ev.originalEvent.dataTransfer;
+    var data = ev.originalEvent.dataTransfer.getData("text");
+    ev.target.appendChild(document.getElementById(data));
   }
 });

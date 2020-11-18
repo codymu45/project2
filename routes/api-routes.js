@@ -172,4 +172,36 @@ module.exports = function(app) {
       }
     });
   });
+
+  app.get("/api/tasks", isAuthenticated, (req, res) => {
+    console.log("Test");
+
+    db.Tasks.findAll({
+      where: {
+        UserId: req.user.id,
+        createdAt: {
+          [Op.gte]: moment()
+            .subtract(7, "days")
+            .toDate()
+        },
+      }
+    }).then(results => {
+      // eslint-disable-next-line
+      console.log(results);
+      res.json(results);
+    });
+  });
+
+  app.put("/api/tasks", isAuthenticated, function(req, res) {
+    db.Tasks.update(
+      req.body,
+      {
+        where: {
+          id: req.body.id
+        }
+      }).then(function() {
+        res.status(201);
+    });
+  });
+
 };
