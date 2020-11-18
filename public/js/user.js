@@ -1,3 +1,5 @@
+let startTime = new Date();
+
 $(document).ready(() => {
   $.get("/api/user_data").then(data => {
     $(".member-name").text(data.fullName);
@@ -15,32 +17,42 @@ $(document).ready(() => {
     window.location.replace("/stats");
   });
   // Getting references to our form and inputs
-  const clockIn = $("button#clockIn");
   let hours = 0;
   let mins = 0;
   let secs = 0;
 
+  const clockIn = $("button#clockIn");
+
   clockIn.on("click", () => {
     if (clockIn.text() === "CLOCK IN") {
       clockIn.text("CLOCK OUT");
-      countUpFromTime(new Date(), "countup1");
+      if (localStorage.getItem("clock") !== null) {
+        countUpFromTime(Date.parse(localStorage.getItem("clock")), "countup1");
+      } else {
+        countUpFromTime(new Date(), "countup1");
+      }
     } else {
       clockIn.text("CLOCK IN");
       clearTimeout(countUpFromTime.interval);
+      localStorage.clear();
       const fullTime = {
         hours: hours,
         mins: mins,
         secs: secs
       };
-      console.log(fullTime);
       addTime(fullTime);
     }
   });
+
+  if (localStorage.getItem("clock") !== null) {
+    clockIn.click();
+  }
 
   function countUpFromTime(countFrom, id) {
     countFrom = new Date(countFrom).getTime();
     const now = new Date();
     countFrom = new Date(countFrom);
+    startTime = countFrom;
     const timeDifference = now - countFrom;
 
     const secondsInADay = 60 * 60 * 1000 * 24;
@@ -102,6 +114,8 @@ $(document).ready(() => {
       if (res.error) {
         alert(res.error_message);
       }
+      // localStorage.setItem("clock", new Date());
+      localStorage.setItem("clock", startTime);
       location.reload();
     });
   }
