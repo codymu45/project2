@@ -3,6 +3,12 @@ $(document).ready(() => {
     $(".member-name").text(data.fullName);
   });
 
+  const dragLists = $("li.listItem");
+  dragLists.attr("draggable", "true");
+  dragLists.on("dragstart", e => {
+    drag(e);
+  });
+
   const statsLink = $("a#statsLink");
 
   statsLink.on("click", () => {
@@ -85,7 +91,6 @@ $(document).ready(() => {
     const newTask = {
       name: taskName
     };
-    console.log("your new task is " + newTask.name);
     addTask(newTask);
   });
 
@@ -94,15 +99,77 @@ $(document).ready(() => {
       url: "/api/addTask",
       method: "POST",
       data: newTask
-    })
-      .done(res => {
-        console.log("new task: ", res);
-        if (res.error) {
-          alert(res.error_message);
-        }
-      })
-      .fail(err => {
-        console.log("error is", err);
-      });
+    }).done(res => {
+      console.log("new task: ", res);
+      if (res.error) {
+        alert(res.error_message);
+      }
+      location.reload();
+    });
+  }
+  function updatePost(ev) {
+    const data = ev.originalEvent.dataTransfer.getData("text");
+    const className = ev.currentTarget.className;
+    const newStatus = {
+      status: className,
+      id: data
+    };
+    console.log(newStatus);
+    $.ajax({
+      method: "PUT",
+      url: "/api/tasks",
+      data: newStatus
+    }).done(() => {
+      console.log("moved");
+    });
+  }
+
+  $(".todoTasks").on("drop", e => {
+    // e.preventDefault();
+    // e.stopPropagation();
+    drop(e);
+  });
+  $(".inProgress").on("drop", e => {
+    // e.preventDefault();
+    // e.stopPropagation();
+    updatePost(e);
+    drop(e);
+  });
+  $(".completed").on("drop", e => {
+    // e.preventDefault();
+    // e.stopPropagation();
+    updatePost(e);
+    drop(e);
+  });
+  $(".todoTasks").on("dragover", e => {
+    // e.preventDefault();
+    // e.stopPropagation();
+    allowDrop(e);
+  });
+  $(".inProgress").on("dragover", e => {
+    // e.preventDefault();
+    // e.stopPropagation();
+    allowDrop(e);
+  });
+  $(".completed").on("dragover", e => {
+    // e.preventDefault();
+    // e.stopPropagation();
+    allowDrop(e);
+  });
+  function allowDrop(ev) {
+    ev.preventDefault();
+  }
+
+  function drag(ev) {
+    // ev.dataTransfer= ev.originalEvent.dataTransfer;
+    ev.originalEvent.dataTransfer.setData("text", ev.target.id);
+  }
+
+  function drop(ev) {
+    ev.preventDefault();
+    // ev.dataTransfer= ev.originalEvent.dataTransfer;
+    const data = ev.originalEvent.dataTransfer.getData("text");
+
+    ev.target.appendChild(document.getElementById(data));
   }
 });

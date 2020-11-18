@@ -21,7 +21,20 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+// Handlebars.registerHelper("ifEquals", function(arg1, arg2, options) {
+//   return arg1 === arg2 ? options.fn(this) : options.inverse(this);
+// });
+// app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+const hbs = exphbs.create({
+  helpers: {
+    ifEquals: function(arg1, arg2, options) {
+      return arg1 === arg2 ? options.fn(this) : options.inverse(this);
+    }
+  },
+  defaultLayout: "main"
+});
+app.engine("handlebars", hbs.engine);
+
 // app.use(routes);
 app.set("view engine", "handlebars");
 
