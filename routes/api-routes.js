@@ -25,13 +25,12 @@ module.exports = function(app) {
   // how we configured our Sequelize User Model. If the user is created successfully, proceed to log the user in,
   // otherwise send back an error
   app.post("/api/signup", (req, res) => {
-
     db.User.create({
       fullName: req.body.fullName,
       email: req.body.email,
       password: req.body.password
     })
-      .then(r => {
+      .then(() => {
         res.status(201);
       })
       .catch(err => {
@@ -69,14 +68,13 @@ module.exports = function(app) {
   });
 
   app.post("/api/addTime", isAuthenticated, (req, res) => {
-
     db.Worktime.create({
       hours: req.body.hours,
       mins: req.body.mins,
       secs: req.body.secs,
       UserId: req.user.id
     })
-      .then(r => {
+      .then(() => {
         res.status(201);
       })
       .catch(err => {
@@ -85,7 +83,6 @@ module.exports = function(app) {
   });
 
   app.post("/api/addTask", isAuthenticated, (req, res) => {
-
     db.Tasks.create({
       name: req.body.name,
       UserId: req.user.id
@@ -191,6 +188,35 @@ module.exports = function(app) {
           record: req.user.recordTasks
         });
       }
+    });
+  });
+
+  app.get("/api/tasks", isAuthenticated, (req, res) => {
+    console.log("Test");
+
+    db.Tasks.findAll({
+      where: {
+        UserId: req.user.id,
+        createdAt: {
+          [Op.gte]: moment()
+            .subtract(7, "days")
+            .toDate()
+        }
+      }
+    }).then(results => {
+      // eslint-disable-next-line
+      console.log(results);
+      res.json(results);
+    });
+  });
+
+  app.put("/api/tasks", isAuthenticated, (req, res) => {
+    db.Tasks.update(req.body, {
+      where: {
+        id: req.body.id
+      }
+    }).then(() => {
+      res.status(201);
     });
   });
 };

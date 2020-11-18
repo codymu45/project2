@@ -74,7 +74,6 @@ $(document).ready(() => {
       data: fullTime
     })
       .done(res => {
-        console.log("result is", res);
         if (res.error) {
           alert(res.error_message);
         }
@@ -100,7 +99,6 @@ $(document).ready(() => {
       method: "POST",
       data: newTask
     }).done(res => {
-      console.log("new task: ", res);
       if (res.error) {
         alert(res.error_message);
       }
@@ -114,13 +112,12 @@ $(document).ready(() => {
       status: className,
       id: data
     };
-    console.log(newStatus);
     $.ajax({
       method: "PUT",
       url: "/api/tasks",
       data: newStatus
     }).done(() => {
-      console.log("moved");
+      // console.log("moved");
     });
   }
 
