@@ -169,7 +169,6 @@ header{
   width: 30%;
   height: 100vh;
   padding: 30px;
-  border-right: 2px solid black;
 }
 
 .inProgress{
@@ -193,7 +192,6 @@ header{
   margin-right: 20px;
   height: 100vh;
   padding: 30px;
-  border-left: 2px solid black;
 }
 
 #todoHeader{
@@ -201,7 +199,7 @@ header{
   text-align: center;
   align-content: center;
   background-color: rgb(255, 137, 137);
-  width: 100%;
+  width: 90%;
   height: 40px;
   font-weight: bold;
   font-size: 30px;
