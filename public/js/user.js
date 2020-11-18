@@ -15,6 +15,7 @@ $(document).ready(() => {
 
   statsLink.on("click", () => {
     window.location.replace("/stats");
+    location.reload();
   });
   // Getting references to our form and inputs
   let hours = 0;

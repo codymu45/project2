@@ -1,7 +1,7 @@
 // Requiring our models and passport as we've configured it
 const db = require("../models");
 const passport = require("../config/passport");
-const Sequelize = require("sequelize");
+// const Sequelize = require("sequelize");
 const { Op } = require("sequelize");
 
 const moment = require("moment");
@@ -105,7 +105,7 @@ module.exports = function(app) {
       if (results.length == 0) {
         return res.json({
           success: true,
-          data: 0
+          data: results
         });
       }
       res.render("user", { results });
@@ -139,19 +139,44 @@ module.exports = function(app) {
           data: 0
         });
       }
-      for (let i = 0; i < results; i++) {
+      // console.log(results[2].dataValues.hours);
+      let totalHours = 0;
+      let totalMins = 0;
+      let totalSecs = 0;
+      for (let i = 0; i < results.length; i++) {
         // add up the times
-        console.log(results[i].dataValues);
+        totalHours += results[i].dataValues.hours;
+        totalMins += results[i].dataValues.mins;
+        totalSecs += results[i].dataValues.secs;
       }
+      totalMins += Math.floor(totalSecs / 60);
+      totalHours += Math.floor(totalMins / 60);
+      console.log(totalHours);
 
       // eslint-disable-next-line camelcase
-      if (running_total > req.user.recordTime) {
+      if (totalHours > req.user.recordTime) {
         // update the user record time,
-        // respond with current time and record time
+        console.log(req.user.recordTime);
+        req.user.recordTime = totalHours;
+        const newRecord = {
+          recordTime: totalHours,
+          id: req.user.id
+        };
+        db.User.update(newRecord, {
+          where: {
+            id: newRecord.id
+          }
+        }).then(() => {
+          res.json({
+            success: true,
+            data: totalHours,
+            record: newRecord.recordTime
+          });
+        });
       } else {
         res.json({
           success: true,
-          data: null, // current time
+          data: totalHours,
           record: req.user.recordTime
         });
       }
@@ -166,57 +191,37 @@ module.exports = function(app) {
           [Op.gte]: moment()
             .subtract(7, "days")
             .toDate()
-        },
-        status: "Completed"
-      }
-    }).then(results => {
-      // eslint-disable-next-line eqeqeq
-      if (results.length == 0) {
-        return res.json({
-          success: true,
-          data: 0
-        });
-      }
-
-      if (results.length > req.user.recordTasks) {
-        // update the user record time,
-        // respond with current time and record time
-      } else {
-        res.json({
-          success: true,
-          data: null, // current time
-          record: req.user.recordTasks
-        });
-      }
-    });
-  });
-
-  app.get("/api/tasks", isAuthenticated, (req, res) => {
-    console.log("Test");
-
-    db.Tasks.findAll({
-      where: {
-        UserId: req.user.id,
-        createdAt: {
-          [Op.gte]: moment()
-            .subtract(7, "days")
-            .toDate()
         }
       }
     }).then(results => {
-      // eslint-disable-next-line
-      console.log(results);
-      res.json(results);
-    });
-  });
-
-  app.put("/api/tasks", isAuthenticated, (req, res) => {
-    db.Tasks.update(req.body, {
-      where: {
-        id: req.body.id
+      // eslint-disable-next-line camelcase
+      if (results.length > req.user.recordTasks) {
+        // update the user record tasks,
+        console.log(req.user.recordTasks);
+        req.user.recordTasks = results.length;
+        const newRecord = {
+          recordTasks: results.length,
+          id: req.user.id
+        };
+        db.Tasks.update(newRecord, {
+          where: {
+            id: newRecord.id,
+            status: "completed"
+          }
+        }).then(() => {
+          res.json({
+            success: true,
+            data: results.length,
+            record: newRecord.recordTasks
+          });
+        });
+      } else {
+        res.json({
+          success: true,
+          data: results.length,
+          record: req.user.recordTasks
+        });
       }
-    }).then(() => {
-      res.status(201);
     });
   });
 };
