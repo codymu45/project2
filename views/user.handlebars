@@ -39,22 +39,41 @@
 <hr class="dashboardBreak">
 <div class="taskBox">
   <div class="todoTasks">
-    <p id="todoHeader">Not Started</p>
+    <p id="todoHeader">Queue</p>
     <ul class="taskList">
       {{#each tasks}}
+        {{#ifEquals status "Queue"}}
+          <li id="{{id}}" draggable="true" ondragstart="drag(event)">{{name}}</li>
+        {{/ifEquals}}
       {{/each}}
     </ul>
   </div>
   <div class="inProgress">
     <p id="progressHeader">In Progress</p>
     <ul class="taskList">
+      {{#each tasks}}
+        {{#ifEquals status "inProgress"}}
+          <li id="{{id}}" draggable="true" ondragstart="drag(event)">{{name}}</li>
+        {{/ifEquals}}
+      {{/each}}
     </ul>
   </div>
   <div class="completed">
     <p id="completedHeader">Completed</p>
     <ul class="taskList">
+      {{#each tasks}}
+        {{#ifEquals status "completed"}}
+          <li id="{{id}}" draggable="true" ondragstart="drag(event)">{{name}}</li>
+        {{/ifEquals}}
+      {{/each}}
     </ul>
   </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript" src="js/user.js"></script>
+<script>
+   function drag(ev) {
+    // ev.dataTransfer= ev.originalEvent.dataTransfer;
+    ev.dataTransfer.setData("text", ev.target.id);
+  }
+</script>
