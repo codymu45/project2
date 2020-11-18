@@ -107,9 +107,11 @@ $(document).ready(() => {
       });
   }
 
-  function updatePost() {
+  function updatePost(e) {
+    alert(e.target.id);
     var newStatus = {
-      status: "WORK"
+      status: "WORK",
+      id: e.target.id
     };
     $.ajax({
       method: "PUT",
@@ -177,7 +179,13 @@ $(document).ready(() => {
   $(".inProgress").on("drop",function(e){
     // e.preventDefault();  
     // e.stopPropagation();
-    updatePost();
+    updatePost(e);
+    drop(e)
+  })
+  $(".completed").on("drop",function(e){
+    // e.preventDefault();  
+    // e.stopPropagation();
+    updatePost(e);
     drop(e)
   })
   $(".todoTasks").on("dragover",function(e){
@@ -186,6 +194,11 @@ $(document).ready(() => {
     allowDrop(e)
   })
   $(".inProgress").on("dragover",function(e){
+    // e.preventDefault();  
+    // e.stopPropagation();
+    allowDrop(e)
+  })
+  $(".completed").on("dragover",function(e){
     // e.preventDefault();  
     // e.stopPropagation();
     allowDrop(e)
