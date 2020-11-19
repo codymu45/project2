@@ -1,20 +1,20 @@
-<header>Work In Progress</header>
-<div class="container">
-  <div class="row">
-    <div class="col-md-6 col-md-offset-3">
-      <h2>Welcome, <span class="member-name"></span></h2>
+<nav class="navbar navbar-expand-lg navbar-dark info-color">
+    <a class="navbar-brand" href="#">Work in Progress</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link waves-effect waves-light" href="/stats">Stats</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link waves-effect waves-light" href="/logout">Logout</a>
+            </li>
+        </ul>
     </div>
-    <nav class="navbar navbar-default">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <a id="statsLink" href="/stats">My Stats</a>
-          <a class="navbar-brand" href="/logout">Logout</a>
-        </div>
-      </div>
-    </nav>
-  </div>
-</div>
-<hr id="headerLine">
+</nav>
+
 <div class="clock">
   <button id="clockIn">CLOCK IN</button>
   <div class="countup" id="countup1">
@@ -27,13 +27,13 @@
   </div>
 </div>
 
-<h3>Add a task:</h3>
-
-<form id="taskForm" action="/" method="POST">
-	<textarea id="taskInput" type="text" name="task"></textarea>
-
-	<button id="addTask">Add Task</button>
-</form>
+<div class="newTaskField">
+  <h3 id="newTaskHeader">Add a New Task:</h3>
+  <form id="taskForm" action="/" method="POST">
+    <input id="taskInput" type="text" name="task"></input>
+  </form>
+  <button id="addTask">Add</button>
+</div>
 
 <hr class="dashboardBreak">
 <div class="taskBox">
