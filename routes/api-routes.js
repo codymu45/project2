@@ -187,6 +187,7 @@ module.exports = function(app) {
     db.Tasks.findAll({
       where: {
         UserId: req.user.id,
+        status: "completed",
         createdAt: {
           [Op.gte]: moment()
             .subtract(7, "days")
