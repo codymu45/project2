@@ -27,17 +27,24 @@ $(document).ready(() => {
   // Does a post to the signup route. If successful, we are redirected to the members page
   // Otherwise we log any errors
   function signUpUser(userData) {
-    $.ajax({url:"/api/signup", method: "POST", data: userData}
-    )
-      .then(() => {
-        window.location.replace("/signIn");
+    console.log("about to submit data");
+    $.ajax({
+      url: "/api/signup",
+      method: "POST",
+      data: userData
+    })
+      .done(res => {
+        console.log("result is", res);
+        if (res.error) {
+          alert(res.error_message);
+        } else {
+          //user is sgined up
+        }
+        // window.location.replace("/signIn");
         // If there's an error, handle it by throwing up a bootstrap alert
       })
-      .catch(handleLoginErr);
-  }
-
-  function handleLoginErr(err) {
-    $("#alert .msg").text(err.responseJSON);
-    $("#alert").fadeIn(500);
+      .fail(err => {
+        console.log("error is", err);
+      });
   }
 });
