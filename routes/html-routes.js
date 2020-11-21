@@ -11,13 +11,8 @@ module.exports = function(app) {
     if (req.user) {
       res.redirect("/user");
     }
-<<<<<<< HEAD
-    res.sendFile(path.join(__dirname, "../public/signUp.html"));
-    // res.render("signup");
-=======
     res.sendFile(path.join(__dirname, "../public/root.html"));
     // res.render("user");
->>>>>>> 4987ef62a817c43c18fbfac443465f60c9357918
   });
 
   app.get("/login", (req, res) => {
@@ -29,16 +24,9 @@ module.exports = function(app) {
     res.render("login");
   });
 
-<<<<<<< HEAD
-  
-  app.get("/signIn", (req, res) => {
-    // If the user already has an account send them to the members page
-    res.sendFile(path.join(__dirname, "../public/signIn.html"));
-=======
   app.get("/login", (req, res) => {
     // If the user already has an account send them to the members page
     res.sendFile(path.join(__dirname, "../public/login.html"));
->>>>>>> 4987ef62a817c43c18fbfac443465f60c9357918
     // res.render("login");
   });
   // Here we've add our isAuthenticated middleware to this route.
