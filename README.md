@@ -19,7 +19,7 @@ When the task was added, it would display on Queue. User can drag and drop the t
 On the stats page, there are 2 fields to view the stats how many hours the user worked for past 7 days and total hour worked in history, and how many tasks the user completed for past 7 days and the total count of completed tasks.  
 ## Technologies
 ​
-The application was developed using client-side and server-side tools and technologies:
+The application was developed using client-side and server-side tools and technologies :
  
 - CSS
 - Javascript
