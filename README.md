@@ -1,12 +1,11 @@
 # Work in Progress
-# Work In Progress
 ​
-![Work In Progress](/image link)
-​
-Live application: [WorkInProgress](heroku link)
-​
+Live application: [WorkInProgress](https://mecc-project2.herokuapp.com/)
+
+Screenshot of application: ​
+![Work In Progress Screen](./public/img/workInProgress.gif)
 ## App Description
-​
+​This Work in Progress app can be used to manage your daily work time and tasks, also the stats shows past 7 days of the user work load. 
 ### Sign up/Sign in
 User can sign up to the app for the first time and sign into existing account. 
 If the account is already exist, user receives the message. 
@@ -34,3 +33,14 @@ The application was developed using client-side and server-side tools and techno
 ​
 The data was created and updated within the MySQL database. Within the database, there were 3 related tables, users, worktimes, and tasks. 
 Each table has relationship by id. 
+
+## Authors
+
+* Cody Mullen
+* Maira Acevedo
+* Choyo Matsuta
+
+## Acknowledgements
+
+* Our instructor and the TA
+* Tutors
