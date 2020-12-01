@@ -42,8 +42,7 @@ module.exports = function(app) {
   });
 
   app.get("/signup", (req, res) => {
-    // If the user already has an account send them to the members page
-    res.render("signUp");
+    res.render("signup");
   });
 
   app.get("/stats", isAuthenticated, (req, res) => {
