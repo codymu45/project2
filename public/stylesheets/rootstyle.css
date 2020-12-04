@@ -1,0 +1,457 @@
+body{
+  height: 100vh;
+  width: 100vw;
+  background-color: rgb(247,221,164);
+  font-family: 'Assistant', sans-serif;
+  /* overflow: hidden; Hide scrollbars */
+}
+
+.fieldBox{
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  justify-content: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  width: 100vw;
+  background-attachment: fixed;
+  background-position: center;
+  color: rgb(70,77,92);
+}
+
+.signBtns{
+  margin: auto;
+  justify-content: space-between;
+  width: 500px;
+}
+
+#signIn{ 
+  font-family: 'Assistant', sans-serif;
+  font-weight: bold;
+  cursor: pointer;
+  width: 150px;
+  height: 50px;
+  align-self: center;
+  font-size: larger;
+  border: 2px solid rgb(70,77,92);
+  border-radius: 3px;
+  transition: 0.5s;
+  margin-bottom: 20px;
+}
+
+#signUp{
+  font-family: 'Assistant', sans-serif;
+  font-weight: bold;
+  cursor: pointer;
+  width: 150px;
+  height: 50px;
+  align-self: center;
+  font-size: larger;
+  border: 2px solid rgb(70,77,92);
+  border-radius: 3px;
+  transition: 0.5s;
+  margin-bottom: 20px;
+}
+
+button:hover{
+  background-color:  rgb(70,77,92);
+  color: rgb(247,221,164)
+}
+
+#welcome{
+  font-weight: bold;
+  font-size: 5rem;
+}
+
+hr{
+  width: 400px;
+  border: 1px solid rgb(70,77,92);
+  border-radius: 3px;
+}
+
+form{
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}
+
+input{
+  width: 250px;
+  align-self: center;
+  font-family: 'Assistant', sans-serif;
+  font-weight: bold;
+  border: 2px solid rgb(70,77,92);
+  border-radius: 3px;
+  margin-bottom: 1%;
+  height: 30px;
+  font-size: 1.3rem;
+}
+
+.accountLinks{
+  align-self: center;
+  width: 400px;
+  font-family: 'Assistant', sans-serif;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  color: rgb(70,77,92);
+}
+
+a{
+  color: rgb(70,77,92);
+  text-decoration: none;
+}
+
+.navbar-brand{
+  font-size: 3rem;
+  background-color: rgb(70,77,92);
+}
+
+.navbar{
+  background-color: rgb(70,77,92);
+  margin-bottom: 20px;
+}
+
+.nav-item{
+  color: rgb(247,221,164);
+}
+
+.navbar-dark .navbar-brand {
+  color: rgb(247,221,164);
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  font-size: 20px;
+  color: rgb(247,221,164);
+}
+
+.clock{
+  display: flex;
+  flex-direction: row;
+  margin: auto;
+  width: fit-content;
+  text-align: center;
+  justify-content: space-evenly;
+  height: fit-content;
+}
+
+#timer{
+  font-family: 'Assistant', sans-serif;
+  font-weight: bold;
+  font-size: 40px;
+  border-radius: 10px;
+  background-color: rgb(226, 226, 226);
+  width: 200px;
+}
+
+#clockIn{
+  font-family: 'Assistant', sans-serif;
+  font-weight: bold;
+  width: 200px;
+  height: 50px;
+  align-self: center;
+  cursor: pointer;
+  font-size: 25px;
+  border: 2px solid black;
+  border-radius: 8px;
+  background-color: rgb(226, 226, 226);
+  transition: 0.3s;
+  box-shadow: 0 9px rgb(93, 93, 93);
+  text-decoration: none;
+  outline: none;
+  margin-bottom: 3%;
+}
+
+.countup .timeel {
+  display: inline-block;
+  font-size: 25px;
+  text-align: center;
+  line-height: 25px;
+  padding: 10px;
+  height: 50px;
+  width: 100px;
+  background: #151515;
+  margin: 0;
+  color: white;
+  min-width: 2.6rem;
+  margin-left: 13px;
+  border-radius: 10px 0 0 10px;
+}
+
+#clockIn:hover{
+  background: rgb(0, 156, 26)!important;
+    color: rgb(255, 255, 255)!important;
+}
+
+#clockIn:active{
+  box-shadow: 0 5px rgb(56, 56, 56);
+  transform: translateY(5px);
+}
+
+.dashboardBreak{
+  width: 85%;
+}
+
+.taskBox{
+  width: 100%;
+  align-self: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+header{
+  font-size: 30px;
+  background-color: rgb(70,77,92);
+  color:rgb(247,221,164);
+  padding: 10px;
+  margin-top: -10px;
+  margin-left: -10px;
+  margin-bottom: -10px;
+}
+
+#headerLine{
+  width: 100vw;
+  margin-left: -20px;
+}
+
+ul{
+  list-style-type: none;
+}
+
+.todoTasks{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin-top: none;
+  justify-content: center;
+  width: 33%;
+  height: 80vh;
+  padding: 30px;
+}
+
+.inProgress{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin-top: none;
+  justify-content: center;
+  width: 33%;
+  height: 80vh;
+  padding: 30px;
+}
+
+.completed{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin-top: none;
+  justify-content: center;
+  width: 33%;
+  margin-right: 20px;
+  height: 80vh;
+  padding: 30px;
+}
+
+#todoHeader{
+  justify-content: center;
+  text-align: center;
+  line-height: 0px;
+  background-color: rgb(255, 137, 137);
+  border: 3px solid rgb(70,77,92);
+  width: 100%;
+  height: 40px;
+  font-weight: bold;
+  font-size: 30px;
+  padding: 30px;
+  border-radius: 10px;
+}
+
+#progressHeader{
+  text-align: center;
+  background-color: rgb(255, 239, 146);
+  border: 3px solid rgb(70,77,92);
+  line-height: 0px;
+  width: 100%;
+  height: 40px;
+  font-weight: bold;
+  font-size: 30px;
+  padding: 30px;
+  border-radius: 10px;
+}
+
+#completedHeader{
+  text-align: center;
+  background-color: rgb(156, 255, 147);
+  border: 3px solid rgb(70,77,92);
+  line-height: 0px;
+  width: 100%;
+  height: 40px;
+  font-weight: bold;
+  font-size: 30px;
+  padding: 30px;
+  border-radius: 10px;
+}
+
+.taskList{
+  height: 100vh;
+  width: 100%;
+  margin: auto;
+  justify-content: center;
+  align-content: center;
+  display: block;
+  text-align: center;
+  padding-right: 40px;
+  border-radius: 3px;
+  background-color: rgb(70,77,92)
+}
+
+li{
+  border: 1px solid rgb(247,221,164);
+  font-size: 20px;
+  border-radius: 3px;
+  padding: 10px;
+  margin: 10px;
+  color: rgb(247,221,164);
+  background-color: rgb(70,77,92)
+}
+
+#statsLabel{
+  font-size: 3rem;
+  text-align: center;
+  font-weight: bold;
+  color: rgb(70,77,92)
+}
+
+.statsBreak{
+  width: 95%;
+}
+
+.statsContainer{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.weekHours{
+  width: 50%;
+  height: 100vh;
+  font-size: 3rem;
+  /* background-color: blue; */
+
+}
+
+.weekTasks{
+  width: 50%;
+  height: 100vh;
+  /* background-color: red; */
+}
+
+#currentHoursHead{
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+  color: rgb(70,77,92);
+}
+
+#currentTasksHead{
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+  color: rgb(70,77,92);
+}
+
+.records{
+  color: white;
+  background-color: rgb(70,77,92);
+  border-radius: 15px;
+  margin: auto;
+  width: 70%;
+  text-align: center;
+  padding: 20px;
+}
+
+#currentHours{
+  font-size: 2.5rem;
+}
+
+#recordHours{
+  font-size: 2.5rem;
+}
+
+#currentTasks{
+  font-size: 2.5rem;
+}
+
+#recordTasks{
+  font-size: 2.5rem;
+}
+
+.countup {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.countup .timeel {
+  display: inline-block;
+  padding: 10px;
+  background: rgb(70,77,92);
+  margin: 0;
+  color: white;
+  min-width: 2.6rem;
+  margin-left: 13px;
+  border-radius: 10px 0 0 10px;
+}
+.countup span[class*="timeRef"] {
+  border-radius: 0 10px 10px 0;
+  margin-left: 0;
+  background: white;
+  color: black;
+}
+
+.headContainer{
+  display: flex;
+  flex-direction: row;
+  color: rgb(70,77,92);
+  font-weight: bold;
+}
+
+#taskInput{
+  width: 50%;
+  /* height: 40px; */
+  font-size: 24px;
+  height: 3.5rem;
+}
+
+#addTask{
+  font-family: 'Assistant', sans-serif;
+  font-weight: bold;
+  cursor: pointer;
+  width: 200px;
+  height: 50px;
+  align-self: center;
+  font-size: larger;
+  border: 2px solid rgb(70,77,92);
+  border-radius: 3px;
+  transition: 0.3s;
+}
+
+#addTask:hover{
+  color: rgb(247,221,164);
+}
+
+#newTaskHeader{
+  font-weight: bold;
+  color: rgb(70,77,92);
+}
+
+
+.newTaskField{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: space-around;
+  align-self: center;
+  margin-top: 20px;
+  margin-bottom: 50px;
+}
+

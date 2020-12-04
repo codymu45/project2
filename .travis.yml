@@ -3,10 +3,12 @@ node_js: "12"
 branches:
   only:
     - master
+    - main
+    - test
 cache:
   directories:
     - node_modules
 services:
   - mysql
 before_install:
-  - mysql -e 'CREATE DATABASE IF NOT EXISTS testdb;'
+  - mysql -e 'CREATE DATABASE IF NOT EXISTS work_db;'
